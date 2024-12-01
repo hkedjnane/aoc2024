@@ -11,8 +11,7 @@ sed -i "s/template/day$DAY/g" day$DAY/src/main.rs
 mkdir day$DAY/assets
 input $DAY day$DAY/assets/input.txt
 # ask for a test input in stdin
-echo "Please provide a test input for day $DAY"
+echo "Please provide a test input for day $DAY. End input with CTRL+Space"
 IFS= read -d '' TEST_INPUT
 echo "$TEST_INPUT" > day$DAY/assets/test.txt
-
-
+code day$DAY
