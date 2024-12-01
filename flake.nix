@@ -17,8 +17,7 @@
       {
         devShells.default = mkShell {
           buildInputs = [
-            cargo
-            rustc
+            rustup
             python311Packages.requests
 
             git-crypt
@@ -28,6 +27,9 @@
           SESSION = builtins.readFile ./.session;
 
           shellHook = ''
+          rustup default stable
+          rustup update
+          rustup component add cargo clippy rustc rust-analyzer rustfmt
           export PATH=$PATH:$PWD/scripts
           export ROOT=$PWD
           '';

@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+DAY=$1
+
+cd $ROOT
+cargo init day$DAY
+cp template/src/* day$DAY/src
+# sed the word template to the day number in the Cargo.toml and src/main.rs
+sed -i "s/template/day$DAY/g" day$DAY/src/main.rs
+# get the input for the day and put it in the assets folder
+mkdir day$DAY/assets
+input $DAY day$DAY/assets/input.txt
+# ask for a test input in stdin
+echo "Please provide a test input for day $DAY"
+IFS= read -d '' TEST_INPUT
+echo "$TEST_INPUT" > day$DAY/assets/test.txt
+
+

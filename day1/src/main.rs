@@ -1,4 +1,4 @@
-use template::solution;
+use day1::solution;
 
 fn main() {
     // if we pass an argument, that file contains the input

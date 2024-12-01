@@ -9,7 +9,7 @@ from os.path import exists
 
 SESSION = os.environ['SESSION']
 s = r.session()
-r.utils.add_dict_to_cookiejar(s.cookies, {"session": SESSION})
+r.utils.add_dict_to_cookiejar(s.cookies, {"session": SESSION.strip()})
 
 DAY= int(sys.argv[1])
 PATH = sys.argv[2]
