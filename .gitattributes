@@ -1,0 +1,3 @@
+.session filter=git-crypt diff=git-crypt
+# encrypt all input files as they shouldn't be shared
+**/assets/* filter=git-crypt diff=git-crypt

@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+import requests as r
+import sys
+import os
+import subprocess
+import re
+from os.path import exists
+
+SESSION = os.environ['SESSION']
+s = r.session()
+r.utils.add_dict_to_cookiejar(s.cookies, {"session": SESSION})
+
+DAY= int(sys.argv[1])
+PATH = sys.argv[2]
+YEAR = int(os.environ['YEAR'])
+URL=f'https://adventofcode.com/{YEAR}/day/{DAY}/input'
+
+input = s.get(URL).content
+
+with open(PATH, 'wb') as f:
+    f.write(input)
+    
+
+

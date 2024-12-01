@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+
+import requests as r
+import sys
+import os
+import subprocess
+import re
+from os.path import exists
+
+SESSION = os.environ['SESSION']
+s = r.session()
+r.utils.add_dict_to_cookiejar(s.cookies, {"session": SESSION})
+
+DAY= int(sys.argv[1])
+YEAR = int(os.environ['YEAR'])
+URL=f'https://adventofcode.com/{YEAR}/day/{DAY}/answer'
+ANSWER= subprocess.check_output(['cargo', 'run', '-p', f'day{DAY}']).decode().strip()
+ANSWER=ANSWER.split('\n')
+ANSWER=[re.findall(r'\d+', s)[1] for s in ANSWER]
+ANSWER1 = ANSWER[0]
+ANSWER2 = ANSWER[1]
+print(f'Part1: {ANSWER1}\nPart2: {ANSWER2}')
+
+PART1SOLVED= exists(f'day{DAY}/.day1solved')
+PART2SOLVED= exists(f'day{DAY}/.day1solved')
+if PART2SOLVED:
+    print("Already solved")
+    exit(0)
+if not PART1SOLVED:
+    data = s.post(URL, data = {"level":1, "answer": ANSWER1})
+    print(data.content)
+    
+
+
