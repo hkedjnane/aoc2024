@@ -15,8 +15,6 @@ fn main() {
             .to_string()
     };
 
-    if std::env::args().len() > 1 {}
-
     let (part1, part2) = solution(&input);
 
     println!("Part 1: {}", part1.unwrap_or_default());
